@@ -339,7 +339,7 @@ fi
 bindkey -r '^Ed'
 
 # add local prompt theme directory and set prompt
-export fpath=($ZDOTDIR/prompts $fpath)
+fpath=($ZDOTDIR/prompts $fpath)
 autoload -Uz promptinit
 promptinit
 prompt kevin
