@@ -1,8 +1,10 @@
 # remove unwanted keybinds defined by grml-zsh-config in main .zshrc
 bindkey -r '^Ed'
 
-# add local prompt theme directory and set prompt
-fpath=($ZDOTDIR/prompts $fpath)
+# add local functions and prompts to fpath
+fpath=($ZDOTDIR/functions $ZDOTDIR/prompts $fpath)
+
+# set prompt
 autoload -Uz promptinit
 promptinit
 prompt kevin
