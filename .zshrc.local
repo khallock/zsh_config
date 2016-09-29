@@ -10,6 +10,6 @@ promptinit
 prompt kevin
 
 # load local functions
-for function in $ZDOTDIR/functions/*; do
+for function in $(ls $ZDOTDIR/functions/*(N)); do
     autoload -Uz $function
 done
