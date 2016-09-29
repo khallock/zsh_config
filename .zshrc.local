@@ -8,3 +8,8 @@ fpath=($ZDOTDIR/functions $ZDOTDIR/prompts $fpath)
 autoload -Uz promptinit
 promptinit
 prompt kevin
+
+# load local functions
+for function in $ZDOTDIR/functions/*; do
+    autoload -Uz $function
+done
