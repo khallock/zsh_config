@@ -13,3 +13,8 @@ prompt kevin
 for function in $(ls $ZDOTDIR/functions/*(N)); do
     autoload -Uz $(basename $function)
 done
+
+# yellowstone specific changes
+module load git git-svn
+export PATH=$PATH:$HOME/.rbenv/shims:$HOME/miniconda2/bin
+ssh_agent
