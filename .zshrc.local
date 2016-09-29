@@ -334,4 +334,12 @@ fi
 #vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
 ## END OF FILE #################################################################
+
+# remove unwanted keybinds defined by grml-zsh-config in main .zshrc
 bindkey -r '^Ed'
+
+# add local prompt theme directory and set prompt
+export fpath=($ZDOTDIR/prompts $fpath)
+autoload -Uz promptinit
+promptinit
+prompt kevin
