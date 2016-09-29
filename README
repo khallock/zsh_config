@@ -1,0 +1,5 @@
+ZSH configuration based on grml-zsh-config (https://grml.org/zsh/)
+
+To install, run the following commands:
+git clone git@github.com:khallock/zsh_config.git $HOME/.zsh
+ln -s .zsh/.zshenv $HOME/.zshenv
