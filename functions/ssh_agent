@@ -1,5 +1,18 @@
 function ssh_agent {
-    local _SSH_AUTH_SOCK=$(find /tmp -type s -name 'agent.*' -user $USER 2>/dev/null)
+    local _SSH_TMP_PATH
+    local _UNAME=$(uname)
+
+    case ${_UNAME} in
+        Darwin)
+            # OS X handles ssh-agent through Keychain
+            return
+            ;;
+        *)
+            _SSH_TMP_PATH=/tmp
+            ;;
+    esac
+
+    local _SSH_AUTH_SOCK=$(find ${_SSH_TMP_PATH} -type s -name 'agent.*' -user $USER 2>/dev/null)
     SSH_AUTH_SOCK=${_SSH_AUTH_SOCK} ssh-add -l >/dev/null 2>&1
 
     if [ $? -eq 2 ] ; then
