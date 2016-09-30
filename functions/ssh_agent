@@ -1,0 +1,19 @@
+function ssh_agent {
+    local _SSH_AUTH_SOCK=$(find /tmp -type s -name 'agent.*' -user $USER 2>/dev/null)
+    SSH_AUTH_SOCK=${_SSH_AUTH_SOCK} ssh-add -l >/dev/null 2>&1
+
+    if [ $? -eq 2 ] ; then
+        eval $(ssh-agent)
+    else
+        export SSH_AUTH_SOCK=${_SSH_AUTH_SOCK}
+        export SSH_AGENT_PID=$(ps -U hallock -o pid,args | grep 'ssh-agent$' | awk '{print $1}')
+        echo "Agent pid ${SSH_AGENT_PID}"
+    fi
+}
+
+#function ssh_agent_zshexit {
+function zshexit {
+    ps -U $USER -o pid,args | egrep -v "(^$$|grep)" | grep -q zsh || kill ${SSH_AGENT_PID}
+}
+
+ssh_agent "$@"
